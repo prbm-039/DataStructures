@@ -14,12 +14,14 @@
    • Find Student wise and subject wise total marks and display the same.
 
 2. Design, Develop and Implement a menu driven Program in C for the following operations on
+
    a) STACK of Integers (Array with structure Implementation of Stack with size MAX)
    • Push an Element on to Stack.
    • Pop an Element from Stack.
    • Demonstrate Overflow and Underflow situations on Stack.
    • Display the status of Stack .
    • Exit
+
 3. Queue of Integers (Array with structure Implementation of Queue with size MAX)
    • Insert an Element in to Queue.
    • Delete an Element from Queue.
