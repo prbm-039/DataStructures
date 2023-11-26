@@ -1,8 +1,5 @@
 # DataStructures_lab_programs
 
-dd
-ff
-
 1. Design, Develop and Implement a menu driven Program in C for the following
 
    a) To create an Array of N Integer Elements and store n values.
