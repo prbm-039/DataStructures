@@ -1,7 +1,14 @@
+// 3. Queue of Integers (Array with structure Implementation of Queue with size MAX)
+//    • Insert an Element in to Queue.
+//    • Delete an Element from Queue.
+//    • Demonstrate Overflow and Underflow situations on Queue.
+//    • Display the status of Queue .
+//    • Exit
+//    Support the program with appropriate functions for each of the above operations
 #include<stdio.h>
 #include<stdlib.h>
 #define max 5
-struct queue{
+struct queue{   
     int quee[max];
     int front;
     int rear;
