@@ -1,116 +1,72 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-#define MAX 100
-
-// Structure to represent the stack
-struct Stack {
-    char arr[MAX];
-    int top;
-};
-
-// Function to initialize the stack
-void initialize(struct Stack *s) {
-    s->top = -1;
-}
-
-// Function to check if the stack is empty
-int isEmpty(struct Stack *s) {
-    return s->top == -1;
-}
-
-// Function to check if the stack is full
-int isFull(struct Stack *s) {
-    return s->top == MAX - 1;
-}
-
-// Function to push a character onto the stack
-void push(struct Stack *s, char value) {
-    if (isFull(s)) {
-        printf("Stack Overflow! Cannot push element %c\n", value);
-    } else {
-        s->arr[++s->top] = value;
-    }
-}
-
-// Function to pop a character from the stack
-char pop(struct Stack *s) {
-    if (isEmpty(s)) {
-        printf("Stack Underflow! Cannot pop from an empty stack\n");
-        return '\0';
-    } else {
-        return s->arr[s->top--];
-    }
-}
-
-// Function to get the precedence of an operator
-int getPrecedence(char operator) {
-    switch (operator) {
-        case '^':
-            return 3;
-        case '*':
-        case '/':
-        case '%':
-            return 2;
-        case '+':
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int F(char symbol)
+{
+    switch(symbol)
+    {
+        case '(':return 0;
+        case '#':return -1;
         case '-':
-            return 1;
-        default:
-            return -1;
+        case '+':return 2;
+        case '*':
+        case '%':
+        case '/':return 4;
+        case '$':
+        case '^':return 5;
+        default:return 8;
     }
 }
-
-// Function to convert infix expression to postfix expression
-void infixToPostfix(char infix[], char postfix[]) {
-    struct Stack stack;
-    initialize(&stack);
-
-    int i, j = 0;
-
-    for (i = 0; infix[i] != '\0'; i++) {
-        if (isalnum(infix[i])) {
-            postfix[j++] = infix[i];
-        } else if (infix[i] == '(') {
-            push(&stack, '(');
-        } else if (infix[i] == ')') {
-            while (!isEmpty(&stack) && stack.arr[stack.top] != '(') {
-                postfix[j++] = pop(&stack);
-            }
-            if (!isEmpty(&stack) && stack.arr[stack.top] == '(') {
-                pop(&stack); // Pop '(' from the stack
-            } else {
-                printf("Mismatched parentheses in the infix expression\n");
-                exit(1);
-            }
-        } else {
-            while (!isEmpty(&stack) && getPrecedence(infix[i]) <= getPrecedence(stack.arr[stack.top])) {
-                postfix[j++] = pop(&stack);
-            }
-            push(&stack, infix[i]);
-        }
+int G(char symbol)
+{
+    switch(symbol)
+    {
+        case ')':return 0;
+        case '-':
+        case '+':return 1;
+        case '*':
+        case '%':
+        case '/':return 3;
+        case '$':
+        case '^':return 6;
+        case '(':return 9;
+        default:return 7;
     }
-
-    while (!isEmpty(&stack)) {
-        if (stack.arr[stack.top] == '(') {
-            printf("Mismatched parentheses in the infix expression\n");
-            exit(1);
-        }
-        postfix[j++] = pop(&stack);
-    }
-
-    postfix[j] = '\0';
 }
-
-int main() {
-    char infix[MAX], postfix[MAX];
-
-    printf("Enter an infix expression with operators: +, -, *, /, %, ^\n");
-    fgets(infix, MAX, stdin);
-
-    infixToPostfix(infix, postfix);
-
-    printf("Postfix expression: %s\n", postfix);
-
-    return 0;
+void infix_postfix(char infix[],char postfix[])
+{
+    int top=-1,j=0,i;
+    char s[30],symbol;
+    s[++top]='#';
+    for(i=0;i<strlen(infix);i++)
+    {
+        symbol=infix[i];
+        while(F(s[top])>G(symbol))
+        {
+            postfix[j]=s[top--];
+            j++;
+        }
+        if(F(s[top])!=G(symbol))
+        {
+            s[++top]=symbol;
+        }
+        else
+        {
+            top--;
+        }
+    }
+    while(s[top] != '#')
+    {
+        postfix[j++]=s[top--];
+    }
+    postfix[j]='\0';
+}
+void main()
+{
+    char infix[20],postfix[20];
+    printf("\n enter the infix expression:");
+    scanf("%s",infix);
+    infix_postfix(infix,postfix);
+    printf("\n the postfix expression is :");
+    printf("%s",postfix);
 }

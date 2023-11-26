@@ -1,101 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX 5
-
-// Structure to represent the stack
-struct Stack {
-    int arr[MAX];
+#include<stdio.h>
+#include<stdlib.h>
+#define Max 5
+struct stackk
+{
     int top;
-};
-
-// Function to initialize the stack
-void initialize(struct Stack *s) {
-    s->top = -1;
-}
-
-// Function to check if the stack is empty
-int isEmpty(struct Stack *s) {
-    return s->top == -1;
-}
-
-// Function to check if the stack is full
-int isFull(struct Stack *s) {
-    return s->top == MAX - 1;
-}
-
-// Function to push an element onto the stack
-void push(struct Stack *s, int value) {
-    if (isFull(s)) {
-        printf("Stack Overflow! Cannot push element %d\n", value);
-    } else {
-        s->arr[++s->top] = value;
-        printf("Element %d pushed onto the stack\n", value);
+    int stk[Max];
+}sta;
+void push(int, struct stackk *);
+void popp(struct stackk *);
+void display(struct stackk *);
+int main(){
+    sta.top = -1;
+    int cho, item;
+    while(1){
+    printf("\n*********** MAIN MENU ***********\n");
+    printf("Enter your choice\n");
+    printf("1 Push\n2 Pop\n3 Display\n4 Exit\n");
+    scanf("%d",&cho);
+    switch(cho){
+        case 1: printf("Enter the item :");
+            scanf("%d",&item);
+            push(item,&sta);
+            break;
+        case 2: popp(&sta); 
+            break;
+        case 3: display(&sta);
+            break;
+        case 4: exit(0);
+    }  
     }
-}
-
-// Function to pop an element from the stack
-void pop(struct Stack *s) {
-    if (isEmpty(s)) {
-        printf("Stack Underflow! Cannot pop from an empty stack\n");
-    } else {
-        printf("Element %d popped from the stack\n", s->arr[s->top--]);
-    }
-}
-
-// Function to display the status of the stack
-void display(struct Stack *s) {
-    if (isEmpty(s)) {
-        printf("Stack is empty\n");
-    } else {
-        printf("Stack status: ");
-        for (int i = 0; i <= s->top; i++) {
-            printf("%d ", s->arr[i]);
-        }
-        printf("\n");
-    }
-}
-
-int main() {
-    struct Stack stack;
-    initialize(&stack);
-
-    int choice, element;
-
-    do {
-        printf("\nMenu:\n");
-        printf("1. Push\n");
-        printf("2. Pop\n");
-        printf("3. Display Stack\n");
-        printf("4. Exit\n");
-
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
-
-        switch (choice) {
-            case 1:
-                printf("Enter element to push: ");
-                scanf("%d", &element);
-                push(&stack, element);
-                break;
-
-            case 2:
-                pop(&stack);
-                break;
-
-            case 3:
-                display(&stack);
-                break;
-
-            case 4:
-                printf("Exiting program\n");
-                exit(0);
-
-            default:
-                printf("Invalid choice! Please enter a valid option.\n");
-        }
-
-    } while (1);  // Infinite loop for the menu
-
     return 0;
+}
+void push(int item, struct stackk *s){
+    if(s->top == Max-1)
+        printf("The stack is full\n");
+    else
+    {
+        (s->top)++;
+        s->stk[s->top]=item;
+    }
+}
+void popp(struct stackk *s)
+{
+    int item;
+    if(s->top==-1)
+        printf("The stack is empty\n");
+    else
+    {
+        item=s->stk[s->top];
+        (s->top)--;
+        printf("%d deleted\n",item);
+    }
+}
+void display(struct stackk *s)
+{
+    int t=s->top;
+    if(s->top==-1)
+        printf("The stack is empty\n");
+    else
+    {
+        printf("Elements in the stack are\n");
+    while(t>-1)
+        {
+        printf("%d ",s->stk[t--]);
+        }
+    printf("\n");
+    }
 }

@@ -1,108 +1,66 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <math.h>
-
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+#include<math.h>
+#include<string.h>
 #define MAX 100
-
-// Structure to represent the stack
-struct Stack {
-    int arr[MAX];
-    int top;
+struct stack
+{
+int top;
+double a[MAX];
 };
-
-// Function to initialize the stack
-void initialize(struct Stack *s) {
-    s->top = -1;
-}
-
-// Function to check if the stack is empty
-int isEmpty(struct Stack *s) {
-    return s->top == -1;
-}
-
-// Function to check if the stack is full
-int isFull(struct Stack *s) {
-    return s->top == MAX - 1;
-}
-
-// Function to push an element onto the stack
-void push(struct Stack *s, int value) {
-    if (isFull(s)) {
-        printf("Stack Overflow! Cannot push element %d\n", value);
-    } else {
-        s->arr[++s->top] = value;
-    }
-}
-
-// Function to pop an element from the stack
-int pop(struct Stack *s) {
-    if (isEmpty(s)) {
-        printf("Stack Underflow! Cannot pop from an empty stack\n");
-        return -1;
-    } else {
-        return s->arr[s->top--];
-    }
-}
-
-// Function to evaluate a postfix expression
-int evaluatePostfix(char postfix[]) {
-    struct Stack stack;
-    initialize(&stack);
-
-    int i, operand1, operand2, result;
-
-    for (i = 0; postfix[i] != '\0'; i++) {
-        if (isdigit(postfix[i])) {
-            push(&stack, postfix[i] - '0'); // Convert character to integer
-        } else {
-            operand2 = pop(&stack);
-            operand1 = pop(&stack);
-
-            switch (postfix[i]) {
-                case '+':
-                    result = operand1 + operand2;
-                    break;
-                case '-':
-                    result = operand1 - operand2;
-                    break;
-                case '*':
-                    result = operand1 * operand2;
-                    break;
-                case '/':
-                    result = operand1 / operand2;
-                    break;
-                case '%':
-                    result = operand1 % operand2;
-                    break;
-                case '^':
-                    result = (int)pow(operand1, operand2);
-                    break;
-                default:
-                    printf("Invalid operator encountered: %c\n", postfix[i]);
-                    return -1;
-            }
-
-            push(&stack, result);
+void push(char,struct stack *);
+double pop(struct stack *);
+double compute(double,double,char);
+int main()
+{
+    struct stack s;
+    s.top = -1;
+    int i;
+    double op1,op2,res;
+    char postfix[100],symb;
+    printf("Enter postfix expression");
+    scanf("%s",postfix);
+    for(i=0;postfix[i]!='\0';i++)
+    {
+        symb =postfix[i];
+        if(isdigit(symb))
+            push(symb,&s);
+        else
+        {
+            op2=pop(&s);
+            op1=pop(&s);
+            res = compute(op1,op2,symb);
+            s.a[++s.top]=res;
         }
     }
-
-    return pop(&stack);
-}
-
-int main() {
-    char postfix[MAX];
-
-    printf("Enter a postfix expression with single-digit operands and operators (+, -, *, /, %, ^):\n");
-    fgets(postfix, MAX, stdin);
-
-    int result = evaluatePostfix(postfix);
-
-    if (result != -1) {
-        printf("Result of the postfix expression: %d\n", result);
-    } else {
-        printf("Error in evaluating the postfix expression.\n");
-    }
-
+    res=pop(&s);
+    printf("Result after evaluation =%f",res);
     return 0;
+}
+void push(char symb,struct stack *s)
+{
+    if(s->top == MAX-1)
+        printf("Stack Overflow");
+    else
+        s->a[++s->top]=symb-'0';
+}
+double pop(struct stack *s)
+{
+    if(s->top ==-1)
+        printf("Stack is Empty\n");
+    else
+        return(s->a[s->top--]);
+    }
+    double compute(double op1,double op2,char symb)
+{
+    switch(symb)
+    {
+        case '+' : return(op1+op2);
+        case '-' : return(op1-op2);
+        case '*' : return(op1*op2);
+        case '/' : return(op1/op2);
+        case '$' :
+        case '^' : return(pow(op1,op2));
+    }
 }
