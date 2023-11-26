@@ -13,21 +13,21 @@ int main(){
     sta.top = -1;
     int cho, item;
     while(1){
-    printf("\n*********** MAIN MENU ***********\n");
-    printf("Enter your choice\n");
-    printf("1 Push\n2 Pop\n3 Display\n4 Exit\n");
-    scanf("%d",&cho);
-    switch(cho){
-        case 1: printf("Enter the item :");
-            scanf("%d",&item);
-            push(item,&sta);
-            break;
-        case 2: popp(&sta); 
-            break;
-        case 3: display(&sta);
-            break;
-        case 4: exit(0);
-    }  
+        printf("\n*********** MAIN MENU ***********\n");
+        printf("Enter your choice\n");
+        printf("1 Push\n2 Pop\n3 Display\n4 Exit\n");
+        scanf("%d",&cho);
+        switch(cho){
+            case 1: printf("Enter the item :");
+                scanf("%d",&item);
+                push(item,&sta);
+                break;
+            case 2: popp(&sta); 
+                break;
+            case 3: display(&sta);
+                break;
+            case 4: exit(0);
+        }  
     }
     return 0;
 }
