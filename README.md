@@ -1,6 +1,7 @@
 # DataStructures_lab_programs
 
 1. Design, Develop and Implement a menu driven Program in C for the following
+
    a) To create an Array of N Integer Elements and store n values.
    • Inserting an Element (ELEM) at a given valid Position (POS)
    • Deleting an Element at a given valid Position POS)
@@ -8,9 +9,9 @@
    • Exit.
    Support the program with functions for each of the above operations.
 
-b) To create student structure with fields Roll No, Name, Semester, marks in 3 subjects. And Write functions to
-• Enter 5 students’ details and display the same using pointer to structure
-• Find Student wise and subject wise total marks and display the same.
+   b) To create student structure with fields Roll No, Name, Semester, marks in 3 subjects. And Write functions to
+   • Enter 5 students’ details and display the same using pointer to structure
+   • Find Student wise and subject wise total marks and display the same.
 
 2. Design, Develop and Implement a menu driven Program in C for the following operations on
    a) STACK of Integers (Array with structure Implementation of Stack with size MAX)
