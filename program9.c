@@ -1,3 +1,10 @@
+// 9. Design, Develop and Implement a menu driven Program in C for the following operations on Doubly Linked List (DLL) for data of integers.
+//    • Create a DLL of data .
+//    • Perform Insertion and Deletion at End of DLL.
+//    • Perform Insertion and Deletion at Front of DLL.
+//    • Display the status of DLL and count the number of nodes in it.
+//    • Exit
+
 #include<stdio.h>
 #include<stdlib.h>
 struct node{

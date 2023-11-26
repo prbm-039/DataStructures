@@ -1,3 +1,11 @@
+// 2. Design, Develop and Implement a menu driven Program in C for the following operations on
+
+//    a) STACK of Integers (Array with structure Implementation of Stack with size MAX)
+//    • Push an Element on to Stack.
+//    • Pop an Element from Stack.
+//    • Demonstrate Overflow and Underflow situations on Stack.
+//    • Display the status of Stack .
+//    • Exit
 #include<stdio.h>
 #include<stdlib.h>
 #define Max 5
