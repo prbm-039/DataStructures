@@ -1,4 +1,9 @@
-
+// 7. Design, Develop and Implement a menu driven Program in C for the following operations on Singly Linked List (SLL) for data of integers.
+//    • Create a SLL of Data using front insertion.
+//    • Display the status of SLL and count the number of nodes in it.
+//    • Demonstration of stack
+//    • Demonstration of Queue.
+//    • Exit
 #include<stdio.h>
 #include<stdlib.h>
 struct node
