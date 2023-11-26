@@ -1,3 +1,6 @@
+// b) To create student structure with fields Roll No, Name, Semester, marks in 3 subjects. And Write functions to
+//    • Enter 5 students’ details and display the same using pointer to structure
+//    • Find Student wise and subject wise total marks and display the same.
 #include <stdio.h>
 #include <stdlib.h>
 struct student {
